@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>User Profile</title>
+    <script>
+        // Function to confirm if the user wants to save changes
+        function confirmSave(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const confirmed = confirm("You are logged in. Do you want to save changes?");
+            if (confirmed) {
+                // Here, you can process the form data or send it to the server via AJAX
+                // For this example, we will just display a success message
+
+                const username = document.getElementById("username").value;
+                const email = document.getElementById("email").value;
+                const phone = document.getElementById("phone").value;
+                const address = document.getElementById("address").value;
+                const dob = document.getElementById("dob").value;
+
+                // Display the success message
+                alert(`Changes saved successfully!\nUsername: ${username}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address}\nDate of Birth: ${dob}`);
+
+                // Optionally, you can clear the form fields after saving
+                document.getElementById("profileForm").reset();
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Your Profile</h1>
+    </header>
+    <main>
+        <section class="intro-section">
+            <ul class="nav-menu">
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="search_flights.html">Search for Flights</a></li>
+                <li><a href="reservations.html">View Reservations</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="help.html">Help Center</a></li>
+            </ul>
+            <br>
+            <section class="profile-form-section">
+                <h2>Update Profile Information</h2>
+                <form id="profileForm" action="update_profile.html" method="post" onsubmit="confirmSave(event)">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" id="address" name="address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob">
+                    </div>
+                    
+                    <input type="submit" value="Save Changes">
+                </form>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Select Date and Seat</title>
+</head>
+<body>
+    <header>
+        <h1>Select Date and Seat</h1>
+    </header>
+    <main>
+        <section class="intro-section">
+            <ul class="nav-menu">
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+                <li><a href="reservations.html">View Reservations</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="help.html">Help Center</a></li>
+            </ul>
+            <br> 
+        <!-- Flight information at the top -->
+        <h2 id="flightInfo" class="flight-info"></h2>
+        
+        <p class="instruction">Please select your flight date, time, and preferred seat below.</p>
+
+        <form action="payment.html" method="post">
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Select Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="seat">Choose Seat:</label>
+            <select id="seat" name="seat" required>
+                <option value="1A">1A</option>
+                <option value="1B">1B</option>
+                <option value="2A">2A</option>
+                <option value="2B">2B</option>
+            </select>
+
+            <p>Available Seats: 1A, 1B, 2A, 2B (Select your preferred seat)</p>
+
+            <input type="submit" value="Continue to Payment">
+        </form>
+
+        <section id="summary" class="summary-section">
+            <h3>Your Selection Summary</h3>
+            <p id="summaryDate"></p>
+            <p id="summaryTime"></p>
+            <p id="summarySeat"></p>
+        </section>
+    </main>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const flightNumber = urlParams.get('flight');
+        document.getElementById('flightInfo').innerText = `You selected Flight: ${flightNumber}`;
+
+        // Update the summary based on user selection
+        document.getElementById('date').addEventListener('change', function() {
+            document.getElementById('summaryDate').innerText = `Selected Date: ${this.value}`;
+        });
+
+        document.getElementById('time').addEventListener('change', function() {
+            document.getElementById('summaryTime').innerText = `Selected Time: ${this.value}`;
+        });
+
+        document.getElementById('seat').addEventListener('change', function() {
+            document.getElementById('summarySeat').innerText = `Selected Seat: ${this.value}`;
+        });
+    </script>
+</body>
+</html>
